@@ -1,7 +1,9 @@
 import React from 'react';
+import { deleteMovie } from '../utils/utils';
 
 const MovieCard = props => {
   const { title, director, metascore, stars } = props.movie;
+  console.log(props.location);
   return (
     <div className="movie-card">
       <h2>{title}</h2>
@@ -18,6 +20,8 @@ const MovieCard = props => {
           {star}
         </div>
       ))}
+      {props.location && <button onClick={() => deleteMovie(props.movie.id, props.location)}>Delete</button>}
+      {props.location && <button onClick={() => props.location.push({pathname: '/update', state: {movie: props.movie}})}>Update</button>}
     </div>
   );
 };
